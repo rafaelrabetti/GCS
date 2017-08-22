@@ -6,5 +6,3 @@ deploy:
   app: GCS
   on:
     repo: rafaelrabetti/GCS
-script: "
-coverage run --source=. glucosetracker/manage.py test -v 2"
