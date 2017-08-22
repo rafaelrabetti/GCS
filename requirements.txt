@@ -1,1 +1,2 @@
 pytest
+Django==1.4.2
