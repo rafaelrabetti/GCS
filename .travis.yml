@@ -6,4 +6,4 @@ deploy:
   app: GCS
   on:
     repo: rafaelrabetti/GCS
-script: "pytest"
+script: pytest
