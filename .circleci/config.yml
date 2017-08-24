@@ -45,8 +45,14 @@ jobs:
           command: |
             . venv/bin/activate
             python manage.py test
+            flake8 --exclude polls/migrations/,manage.py  .
 
       - store_artifacts:
           path: test-reports
           destination: test-reports
-          
+
+    deployment:
+      staging:
+        branch: master
+        heroku:
+          appname: gcs01-rafaelrabetti-circle
