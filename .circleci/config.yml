@@ -48,21 +48,22 @@ jobs:
             flake8 --exclude polls/migrations/,manage.py,./venv/  .
 
     deployment:
-    branch: master
-    commands:
-      - |
-        cat >~/.netrc <<EOF
-        machine api.heroku.com
-          login ${HEROKU_EMAIL}
-          password ${HEROKU_PASSWORD}
-        machine git.heroku.com
-          login ${HEROKU_EMAIL}
-          password ${HEROKU_PASSWORD}
-        EOF
-      - chmod 600 ~/.netrc # Heroku cli complains about permissions without this
-      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      # - git subtree push --prefix darcyWeb git@heroku.com:gcs01-rafaelrabetti-circle.git master
-      - git push git@heroku.com:gcs01-rafaelrabetti-circle.git `git subtree split --prefix darcyWeb master`:master --force
+      staging:
+        branch: master
+        commands:
+          - |
+            cat >~/.netrc <<EOF
+            machine api.heroku.com
+              login ${HEROKU_EMAIL}
+              password ${HEROKU_PASSWORD}
+            machine git.heroku.com
+              login ${HEROKU_EMAIL}
+              password ${HEROKU_PASSWORD}
+            EOF
+          - chmod 600 ~/.netrc # Heroku cli complains about permissions without this
+          - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+          # - git subtree push --prefix GCS git@heroku.com:gcs01-rafaelrabetti-circle.git master
+          - git push git@heroku.com:gcs01-rafaelrabetti-circle.git `git subtree split --prefix GCS master`:master --force
 
       - store_artifacts:
           path: test-reports
