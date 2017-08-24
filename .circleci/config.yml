@@ -50,21 +50,16 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
-
-deployment:
-  production:
-    branch: master
-    commands:
-      - |
-        cat >~/.netrc <<EOF
-        machine api.heroku.com
-          login ${HEROKU_EMAIL}
-          password ${HEROKU_PASSWORD}
-        machine git.heroku.com
-          login ${HEROKU_EMAIL}
-          password ${HEROKU_PASSWORD}
-        EOF
-      - chmod 600 ~/.netrc # Heroku cli complains about permissions without this
-      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      # - git subtree push --prefix darcyWeb git@heroku.com:ondeeunb-prod.git master
-      - git push git@heroku.com:gcs01-rafaelrabetti-circle.git `git subtree split --prefix master`:master --force
+          
+      - run: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "2a:b0:c8:4c:4d:e9:c1:bb:c6:91:6d:0a:19:90:21:c0"
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push heroku master
+              heroku run python manage.py deploy
+              heroku restart
+            fi
