@@ -6,3 +6,6 @@ deploy:
   app: GCS
   on:
     repo: rafaelrabetti/GCS
+script:
+  - python manage.py test
+  - flake8 --exclude polls/migrations/,manage.py  .
