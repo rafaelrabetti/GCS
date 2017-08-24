@@ -51,20 +51,8 @@ jobs:
           path: test-reports
           destination: test-reports
 
-      deployment:
-        production:
-          branch: master
-          commands:
-            - |
-              cat >~/.netrc <<EOF
-              machine api.heroku.com
-                login ${HEROKU_EMAIL}
-                password ${HEROKU_PASSWORD}
-              machine git.heroku.com
-                login ${HEROKU_EMAIL}
-                password ${HEROKU_PASSWORD}
-              EOF
-            - chmod 600 ~/.netrc # Heroku cli complains about permissions without this
-            - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-            # - git subtree push --prefix GCS git@heroku.com:gcs01-rafaelrabetti-circle.git master
-            - git push git@heroku.com:gcs01-rafaelrabetti-circle.git `git subtree split --prefix GCS master`:master --force
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: gcs01-rafaelrabetti-circle
