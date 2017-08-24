@@ -56,7 +56,5 @@ jobs:
           branch: master
           heroku:
             appname: gcs01-rafaelrabetti-circle
-
-      - run:
-        name: Heroku push
-        command: git push heroku master
+            command: |
+              git push heroku master
