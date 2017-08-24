@@ -47,8 +47,9 @@ jobs:
             python manage.py test
             flake8 --exclude polls/migrations/,manage.py,./venv/  .
 
-      # deploy !      
+      # deploy       
           deployment:
+            name: deploy
             staging:
               branch: master
               heroku:
