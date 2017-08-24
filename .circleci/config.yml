@@ -48,7 +48,6 @@ jobs:
             flake8 --exclude polls/migrations/,manage.py,./venv/  .
 
       # deploy !      
-      - deploy:
           deployment:
             staging:
               branch: master
