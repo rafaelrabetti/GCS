@@ -50,8 +50,8 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
-          
-      - run: bash .circleci/setup-heroku.sh
+
+      - run: bash +x .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
             - "2a:b0:c8:4c:4d:e9:c1:bb:c6:91:6d:0a:19:90:21:c0"
