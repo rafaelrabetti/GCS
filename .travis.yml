@@ -3,9 +3,9 @@ deploy:
   provider: heroku
   api_key:
     secure: D5vvIeQyMUaE7IMfQRZazLeRxMhMKJAUo8P3uBrj7j9+8tKIu8aR2v0lRNl8J2tgMVTxZ76vBT4yKafpbfPPs8HY5G3lkarb0Nbqex6sboTYH+WGSbsDpZJFA6m/lO+unFut76TvQTHUXywUG3/WaDYEreBfRRvI8RiUigkmdYKrfr5GmiGFTd3S8ENg5FSKykwpeLancOx0EqRjfo623Ia+BCBldvOuhz8R78d8/EUGdBaOXeFic9f65ZxgyY56NXweYb4KDnoAcifQMQL+BukWluaaS84mCYj1YuzUUfrt6ZrNo//ypMuOPoCwq1M6mAK5fHzgNqJe3ZfOt1GOOmByW8nBbuLFfuoivulNpLUSWFT96Rsx/zz3jESlurR6zINEvY/wi1DMLkeMus6eluuQc3WBGdJoeN5b9pt0+hAboqhgb8iG0bD/LE4vbq+H/3/AkFq+NyDp+/5fFYOauiSyiEUXAJsVphHcXYxCVtVZQJvnkHL8A9GwF2GYznL3O8UIaSCfUDPzRkHiTPCJqIj3g1b2w6+X74+/JlVf+oKwtAhsMN7LH3Qja4GcRo1cOjSSyH9ElOtbrhG9ijLgik1wKr8+z3QqAIfOSfXuuo3ipwOB6N7VjOMfjGpgfNBN3BRV9c4ioSEXqc+t93DJQYzcARyf7zqP3OgnQpaHZSM=
-  app: gcstravis
+  app: gcs01-rafaelrabetti-travis
   on:
-    repo: rafaelrabetti/GCS
+    repo: rafaelrabetti/GCS01
 script:
 - python manage.py migrate
 - python manage.py test
