@@ -33,6 +33,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             wget -qO- https://toolbelt.heroku.com/install.sh | bash
+            echo 'PATH="/usr/local/heroku/bin:$PATH"' >> ~/.profile
             pip install heroku
             pip install -r requirements.txt
 
